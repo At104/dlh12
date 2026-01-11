@@ -36,3 +36,26 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# Patient Records (local filesystem storage)
+patient_records/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+.pytest_cache/
+
+# Ollama models (users install locally)
+.ollama/
+*.gguf
+
+# Whisper models (downloaded locally)
+*.pt
+models/
