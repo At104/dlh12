@@ -68,14 +68,14 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
               className="h-16 w-16 rounded-full object-cover border-2 border-primary/20"
             />
           ) : (
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
-              <span className="text-xl font-semibold text-primary">
-                {patient.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </span>
-            </div>
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
+            <span className="text-xl font-semibold text-primary">
+              {patient.name
+                .split(" ")
+                .map((n) => n[0])
+                .join("")}
+            </span>
+          </div>
           )}
           <div>
             <h1 className="text-2xl font-bold text-foreground">{patient.name}</h1>
@@ -88,7 +88,7 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
                   onClick={() => setShowStatusMenu(!showStatusMenu)}
                   className="flex items-center gap-1 hover:opacity-80 transition-opacity"
                 >
-                  <Badge className={cn(statusColors[patient.status])}>{patient.status}</Badge>
+              <Badge className={cn(statusColors[patient.status])}>{patient.status}</Badge>
                   <ChevronDown className="h-3 w-3 text-muted-foreground" />
                 </button>
                 {showStatusMenu && (
@@ -116,7 +116,7 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
                   onClick={() => setShowPriorityMenu(!showPriorityMenu)}
                   className="flex items-center gap-1 hover:opacity-80 transition-opacity"
                 >
-                  <Badge className={cn(priorityColors[patient.priority])}>{patient.priority} Priority</Badge>
+              <Badge className={cn(priorityColors[patient.priority])}>{patient.priority} Priority</Badge>
                   <ChevronDown className="h-3 w-3 text-muted-foreground" />
                 </button>
                 {showPriorityMenu && (
@@ -154,7 +154,7 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
               )}
             >
               {patient.status === "Waiting" ? "Start Visit" : "Complete Visit"}
-            </button>
+          </button>
           )}
           {patient.status === "Completed" && (
             <Badge className="bg-success/20 text-success px-4 py-2">✓ Completed</Badge>
@@ -220,129 +220,129 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
           {/* Only show additional info cards if data exists */}
           {(patient.phone || patient.email || patient.address || patient.bloodType || patient.insuranceProvider || 
             patient.allergies.length > 0 || patient.currentMedications.length > 0) && (
-            <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
               {/* Personal Information - Only show if any data exists */}
               {(patient.phone || patient.email || patient.address || patient.bloodType || patient.dateOfBirth) && (
-                <Card className="bg-card border-border">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <User className="h-5 w-5 text-primary" />
-                      Personal Information
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
+            <Card className="bg-card border-border">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <User className="h-5 w-5 text-primary" />
+                  Personal Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
                     {patient.phone && (
-                      <div className="flex items-center gap-3 text-sm">
-                        <Phone className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-foreground">{patient.phone}</span>
-                      </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground">{patient.phone}</span>
+                </div>
                     )}
                     {patient.email && (
-                      <div className="flex items-center gap-3 text-sm">
-                        <Mail className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-foreground">{patient.email}</span>
-                      </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Mail className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground">{patient.email}</span>
+                </div>
                     )}
                     {patient.address && (
-                      <div className="flex items-start gap-3 text-sm">
-                        <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
-                        <span className="text-foreground">{patient.address}</span>
-                      </div>
+                <div className="flex items-start gap-3 text-sm">
+                  <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
+                  <span className="text-foreground">{patient.address}</span>
+                </div>
                     )}
                     {patient.bloodType && (
-                      <div className="flex items-center gap-3 text-sm">
-                        <Heart className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-foreground">Blood Type: {patient.bloodType}</span>
-                      </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Heart className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground">Blood Type: {patient.bloodType}</span>
+                </div>
                     )}
                     {patient.dateOfBirth && (
-                      <div className="flex items-center gap-3 text-sm">
-                        <Clock className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-foreground">DOB: {patient.dateOfBirth}</span>
-                      </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground">DOB: {patient.dateOfBirth}</span>
+                </div>
                     )}
-                  </CardContent>
-                </Card>
+              </CardContent>
+            </Card>
               )}
 
               {/* Insurance & Emergency Contact - Only show if data exists */}
               {(patient.insuranceProvider || patient.emergencyContact.name) && (
-                <Card className="bg-card border-border">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <Shield className="h-5 w-5 text-primary" />
-                      Insurance & Emergency
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
+            <Card className="bg-card border-border">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Shield className="h-5 w-5 text-primary" />
+                  Insurance & Emergency
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
                     {patient.insuranceProvider && (
-                      <div>
-                        <p className="text-xs text-muted-foreground mb-1">Insurance Provider</p>
-                        <p className="text-sm text-foreground">{patient.insuranceProvider}</p>
+                <div>
+                  <p className="text-xs text-muted-foreground mb-1">Insurance Provider</p>
+                  <p className="text-sm text-foreground">{patient.insuranceProvider}</p>
                         {patient.insuranceNumber && (
-                          <p className="text-xs text-muted-foreground mt-1">{patient.insuranceNumber}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{patient.insuranceNumber}</p>
                         )}
-                      </div>
+                </div>
                     )}
                     {patient.emergencyContact.name && (
-                      <div className="border-t border-border pt-4">
-                        <p className="text-xs text-muted-foreground mb-1">Emergency Contact</p>
-                        <p className="text-sm font-medium text-foreground">{patient.emergencyContact.name}</p>
+                <div className="border-t border-border pt-4">
+                  <p className="text-xs text-muted-foreground mb-1">Emergency Contact</p>
+                  <p className="text-sm font-medium text-foreground">{patient.emergencyContact.name}</p>
                         {patient.emergencyContact.relationship && (
-                          <p className="text-xs text-muted-foreground">{patient.emergencyContact.relationship}</p>
+                  <p className="text-xs text-muted-foreground">{patient.emergencyContact.relationship}</p>
                         )}
                         {patient.emergencyContact.phone && (
-                          <p className="text-sm text-foreground mt-1">{patient.emergencyContact.phone}</p>
+                  <p className="text-sm text-foreground mt-1">{patient.emergencyContact.phone}</p>
                         )}
-                      </div>
+                </div>
                     )}
-                  </CardContent>
-                </Card>
+              </CardContent>
+            </Card>
               )}
 
               {/* Allergies - Only show if data exists */}
               {patient.allergies.length > 0 && (
-                <Card className="bg-card border-border">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <AlertTriangle className="h-5 w-5 text-warning" />
-                      Allergies
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {patient.allergies.map((allergy, index) => (
-                        <Badge key={index} className="bg-warning/20 text-warning border-0">
-                          {allergy}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+            <Card className="bg-card border-border">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <AlertTriangle className="h-5 w-5 text-warning" />
+                  Allergies
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {patient.allergies.map((allergy, index) => (
+                      <Badge key={index} className="bg-warning/20 text-warning border-0">
+                        {allergy}
+                      </Badge>
+                    ))}
+                  </div>
+              </CardContent>
+            </Card>
               )}
 
               {/* Current Medications - Only show if data exists */}
               {patient.currentMedications.length > 0 && (
-                <Card className="bg-card border-border">
-                  <CardHeader className="pb-3">
-                    <CardTitle className="flex items-center gap-2 text-base">
-                      <Pill className="h-5 w-5 text-primary" />
-                      Current Medications
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {patient.currentMedications.map((medication, index) => (
-                        <li key={index} className="text-sm text-foreground flex items-start gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2" />
-                          {medication}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+            <Card className="bg-card border-border">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Pill className="h-5 w-5 text-primary" />
+                  Current Medications
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <ul className="space-y-2">
+                    {patient.currentMedications.map((medication, index) => (
+                      <li key={index} className="text-sm text-foreground flex items-start gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2" />
+                        {medication}
+                      </li>
+                    ))}
+                  </ul>
+              </CardContent>
+            </Card>
               )}
-            </div>
+          </div>
           )}
         </TabsContent>
 
@@ -350,7 +350,7 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
           {/* Only show vitals if any exist */}
           {(patient.vitalSigns.bloodPressure || patient.vitalSigns.heartRate > 0 || 
             patient.vitalSigns.temperature > 0 || patient.vitalSigns.oxygenSaturation > 0) ? (
-            <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
+          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
             <Card className="bg-card border-border">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
@@ -452,14 +452,14 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
 
         <TabsContent value="history" className="space-y-6">
           {patient.medicalHistory.length > 0 && (
-            <Card className="bg-card border-border">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <FileText className="h-5 w-5 text-primary" />
-                  Medical History
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
+          <Card className="bg-card border-border">
+            <CardHeader className="pb-3">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <FileText className="h-5 w-5 text-primary" />
+                Medical History
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
                 <ul className="space-y-2">
                   {patient.medicalHistory.map((item, index) => (
                     <li key={index} className="text-sm text-foreground flex items-start gap-2">
@@ -468,8 +468,8 @@ export function PatientDetails({ patient, onUpdateStatus, onUpdatePriority }: Pa
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
+            </CardContent>
+          </Card>
           )}
 
           <Card className="bg-card border-border">

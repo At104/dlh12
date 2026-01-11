@@ -161,14 +161,36 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <div className={styles.backgroundElements}>
+        <div className={styles.circle1}></div>
+        <div className={styles.circle2}></div>
+        <div className={styles.circle3}></div>
+      </div>
       <header className={styles.header}>
-        <h1>Hospital Triage System</h1>
-        <p className={styles.subtitle}>Patient Check-In</p>
-        {patientRecords.length > 0 && (
-          <p className={styles.recordCount}>
-            {patientRecords.length} patient{patientRecords.length !== 1 ? 's' : ''} recorded
-          </p>
-        )}
+        <div className={styles.logoSection}>
+          <div className={styles.logoCircle}>
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 5L25 15L35 20L25 25L20 35L15 25L5 20L15 15L20 5Z" stroke="#2563eb" strokeWidth="2" fill="none"/>
+              <circle cx="20" cy="20" r="8" fill="#2563eb" opacity="0.2"/>
+            </svg>
+          </div>
+          <h1>SwiftHealth</h1>
+        </div>
+        <p className={styles.subtitle}>Intelligent Emergency Triage System</p>
+        <div className={styles.stats}>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>99%</div>
+            <div className={styles.statLabel}>Patient Satisfaction</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>24/7</div>
+            <div className={styles.statLabel}>Emergency Care</div>
+          </div>
+          <div className={styles.statItem}>
+            <div className={styles.statNumber}>100%</div>
+            <div className={styles.statLabel}>Privacy Protected</div>
+          </div>
+        </div>
       </header>
       <main className={styles.main}>
         {step === "name" && (
@@ -202,18 +224,32 @@ export default function Home() {
                   onChange={(e) => setPatientName(e.target.value)}
                   autoFocus
                 />
-                <button
-                  className={styles.nextButton}
-                  onClick={handleTextNameSubmit}
-                  disabled={!patientName.trim()}
-                >
-                  Next
-                </button>
+                <div className={styles.buttonGroup}>
+                  <button
+                    className={styles.backButton}
+                    onClick={() => setNameInputMethod(null)}
+                  >
+                    Back
+                  </button>
+                  <button
+                    className={styles.nextButton}
+                    onClick={handleTextNameSubmit}
+                    disabled={!patientName.trim()}
+                  >
+                    Next
+                  </button>
+                </div>
               </div>
             )}
             {nameInputMethod === "voice" && (
               <div className={styles.inputSection}>
                 <Transcription onTranscriptionComplete={handleNameSubmit} />
+                <button
+                  className={styles.backButton}
+                  onClick={() => setNameInputMethod(null)}
+                >
+                  Back
+                </button>
               </div>
             )}
           </div>
@@ -294,9 +330,14 @@ export default function Home() {
                 Saving to filesystem...
               </div>
             )}
-            <button className={styles.backButton} onClick={handleReset}>
-              Start Over
-            </button>
+            <div className={styles.buttonGroup}>
+              <button className={styles.backButton} onClick={() => setStep("input")}>
+                Back
+              </button>
+              <button className={styles.backButton} onClick={handleReset}>
+                Start Over
+              </button>
+            </div>
           </div>
         )}
       </main>

@@ -1,8 +1,4 @@
-# Turborepo starter
-
-This Turborepo starter is maintained by the Turborepo core team.
-
-## Hospital Triage System
+## SwiftHealth
 
 A local-first patient triage system that prioritizes privacy and PIPEDA/PHIPA compliance.
 
@@ -39,8 +35,6 @@ Install the following on your machine:
 
 ### Running the App
 
-You need **4 terminals**:
-
 #### Terminal 1: Next.js Frontend
 ```bash
 cd repo
@@ -61,13 +55,6 @@ source venv/bin/activate
 python api.py
 ```
 Runs on http://localhost:5001
-
-#### Terminal 4: File Storage API
-```bash
-cd repo/apps/file-storage
-node index.js
-```
-Runs on http://localhost:3001
 
 ### Patient Records Storage
 
@@ -118,21 +105,6 @@ patient_records/
 │  - Ollama        │  │  - Patient files │
 └──────────────────┘  └──────────────────┘
 ```
-
-### What NOT to Commit
-
-The `.gitignore` excludes:
-- `venv/` (Python virtual environment)
-- `*.gguf`, `*.pt` (AI model files)
-- `.env` files
-- `node_modules/`
-- `patient_records/` (patient data)
-
-**Each team member must**:
-1. Run `brew install ollama`
-2. Run `ollama pull gemma2:2b`
-3. Create their own Python `venv`
-4. Install Python dependencies locally
 
 This Turborepo starter is maintained by the Turborepo core team.
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "../lib/utils"
-import { Users, LayoutDashboard, Calendar, FileText, Settings, Bell, LogOut, Activity } from "lucide-react"
+import { Users, LogOut, Activity } from "lucide-react"
 
 interface SidebarProps {
   activeTab: string
@@ -24,8 +24,8 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           <Activity className="h-5 w-5 text-primary-foreground" />
         </div>
         <div>
-          <h1 className="text-lg font-semibold text-sidebar-foreground">MediCare</h1>
-          <p className="text-xs text-muted-foreground">Healthcare Portal</p>
+          <h1 className="text-lg font-semibold text-sidebar-foreground">SwiftHealth</h1>
+          <p className="text-xs text-muted-foreground">Triage Dashboard</p>
         </div>
       </div>
 
