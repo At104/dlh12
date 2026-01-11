@@ -1,4 +1,110 @@
-# Turborepo starter
+## SwiftHealth
+
+A local-first patient triage system that prioritizes privacy and PIPEDA/PHIPA compliance.
+
+### Setup Instructions
+
+#### Prerequisites
+
+Install the following on your machine:
+
+1. **Node.js** (v18+): `brew install node`
+2. **Python** (3.9+): `brew install python@3.9`
+3. **Ollama** (for local translation): `brew install ollama`
+
+#### Installation
+
+1. **Install Node dependencies**:
+   ```bash
+   cd repo
+   npm install
+   ```
+
+2. **Set up Python environment for speech API**:
+   ```bash
+   cd apps/speech
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+3. **Download Ollama model** (one-time):
+   ```bash
+   ollama pull gemma2:2b
+   ```
+
+### Running the App
+
+#### Terminal 1: Next.js Frontend
+```bash
+cd repo
+npm run dev
+```
+Runs on http://localhost:3000
+
+#### Terminal 2: Ollama Service
+```bash
+ollama serve
+```
+Runs on http://localhost:11434
+
+#### Terminal 3: Python Transcription API
+```bash
+cd repo/apps/speech
+source venv/bin/activate
+python api.py
+```
+Runs on http://localhost:5001
+
+### Patient Records Storage
+
+Patient records are saved to **local filesystem** in:
+```
+repo/patient_records/[patient_name]_[timestamp]/
+  ├── transcript.txt    (name, symptoms, metadata)
+  ├── photo.jpg         (patient photo)
+  └── metadata.json     (structured data)
+```
+
+**Example folder structure**:
+```
+patient_records/
+  ├── john_doe_2026-01-10T12-30-45-123Z/
+  │   ├── transcript.txt
+  │   ├── photo.jpg
+  │   └── metadata.json
+  └── jane_smith_2026-01-10T12-35-12-456Z/
+      ├── transcript.txt
+      ├── photo.jpg
+      └── metadata.json
+```
+
+### Privacy & Compliance
+
+- **All data is local**: No cloud APIs, no external servers
+- **Whisper**: Local speech-to-text (runs on your machine)
+- **Ollama**: Local translation (runs on your machine)
+- **Filesystem storage**: Patient records saved to local disk
+- **No database**: Simple file-based storage for transparency
+- **Camera access**: Only in-browser via WebRTC (no uploads)
+
+### Architecture
+
+```
+┌─────────────────────────────────────────┐
+│  Frontend (Next.js)                     │
+│  - Patient name (type or voice)         │
+│  - Type or voice symptom input          │
+│  - Camera feed (WebRTC)                 │
+└─────────────────────────────────────────┘
+         │                    │
+         ▼                    ▼
+┌──────────────────┐  ┌──────────────────┐
+│  Python API      │  │  File Storage API│
+│  - Whisper       │  │  - Save to disk  │
+│  - Ollama        │  │  - Patient files │
+└──────────────────┘  └──────────────────┘
+```
 
 This Turborepo starter is maintained by the Turborepo core team.
 
@@ -133,3 +239,4 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
 - [Configuration Options](https://turborepo.com/docs/reference/configuration)
 - [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+

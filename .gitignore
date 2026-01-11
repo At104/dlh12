@@ -48,3 +48,25 @@ apps/speech/test_output/
 apps/facialDetection/live_output/
 apps/facialDetection/*.avi
 apps/facialDetection/*.mp4
+# Patient Records (local filesystem storage)
+patient_records/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+.pytest_cache/
+
+# Ollama models (users install locally)
+.ollama/
+*.gguf
+
+# Whisper models (downloaded locally)
+*.pt
+models/
