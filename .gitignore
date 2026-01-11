@@ -43,3 +43,8 @@ OpenFace_2.2.0_win_x64/
 # Speech output
 apps/speech/live_output/
 apps/speech/test_output/
+
+# Facial Detection output
+apps/facialDetection/live_output/
+apps/facialDetection/*.avi
+apps/facialDetection/*.mp4
